@@ -1,0 +1,121 @@
+:root {
+  --bg: #f7f6f3;
+  --flaeche: #ffffff;
+  --text: #1f2328;
+  --leise: #656d76;
+  --linie: #d8dee4;
+  --akzent: #2f6f9f;
+  --gut: #2e7d4f;
+  --schlecht: #c0392b;
+  --warn: #b7791f;
+  --balken: #e6e9ec;
+  color-scheme: light dark;
+  font: 15px/1.5 system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #15181c;
+    --flaeche: #1d2126;
+    --text: #e6e8eb;
+    --leise: #9aa4ae;
+    --linie: #343b43;
+    --akzent: #6aa8d8;
+    --gut: #5cbf85;
+    --schlecht: #ef6f62;
+    --warn: #e0a84a;
+    --balken: #2b3138;
+  }
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); }
+main { max-width: 1200px; margin: 0 auto; padding: 16px; }
+h1 { margin: 0; font-size: 1.5rem; }
+h2 { font-size: 1.1rem; margin: 2rem 0 .75rem; }
+section { min-width: 0; }
+
+button {
+  font: inherit; color: inherit; background: var(--flaeche); border: 1px solid var(--linie);
+  border-radius: 6px; padding: .35rem .75rem; cursor: pointer;
+}
+button:hover { border-color: var(--akzent); }
+button:disabled { opacity: .5; cursor: not-allowed; }
+button.primaer { background: var(--akzent); border-color: var(--akzent); color: #fff; }
+button.klein { padding: .1rem .5rem; font-size: .85rem; }
+button[aria-checked='true'] { background: var(--akzent); border-color: var(--akzent); color: #fff; }
+:focus-visible { outline: 2px solid var(--akzent); outline-offset: 2px; }
+
+.kopf { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; align-items: center; }
+.gesamt { margin: 0; color: var(--leise); }
+.gesamt strong { color: var(--text); font-size: 1.25rem; }
+.aktionen { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+.umschalter { display: inline-flex; }
+.umschalter button { border-radius: 0; }
+.umschalter button:first-child { border-radius: 6px 0 0 6px; }
+.umschalter button:last-child { border-radius: 0 6px 6px 0; margin-left: -1px; }
+
+.fortschritt { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: .75rem 1.5rem; margin-top: 1.5rem; }
+.modul-kopf { display: flex; justify-content: space-between; gap: .5rem; font-size: .9rem; }
+.modul-kopf span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.modul.unter { opacity: .85; }
+.modul.unter .modul-kopf::before { content: '↳'; color: var(--leise); }
+.zahl { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.modul em { color: var(--schlecht); font-style: normal; font-weight: 600; }
+.balken { display: flex; height: 10px; background: var(--balken); border-radius: 5px; overflow: hidden; margin-top: 2px; }
+.teil.voll { background: var(--akzent); }
+.erfuellt .teil.voll, .ueber .teil.voll { background: var(--gut); }
+.teil.zuviel { background: repeating-linear-gradient(45deg, var(--schlecht) 0 4px, transparent 4px 7px); }
+
+.tabelle-rahmen { overflow-x: auto; background: var(--flaeche); border: 1px solid var(--linie); border-radius: 8px; }
+table { border-collapse: collapse; width: 100%; }
+th, td { padding: .5rem .6rem; border-bottom: 1px solid var(--linie); vertical-align: top; }
+th { font-size: .85rem; color: var(--leise); text-align: left; }
+tbody tr:last-child td { border-bottom: 0; }
+tr.gedimmt td { opacity: .45; }
+td:first-child { min-width: 320px; }
+
+.zeile-kopf { display: flex; justify-content: space-between; gap: .5rem; }
+.zeile-aktionen { display: flex; gap: .25rem; flex-shrink: 0; }
+.marken, .wahlblock { display: flex; flex-wrap: wrap; gap: .3rem; margin-top: .35rem; align-items: center; }
+.marke {
+  display: inline-flex; align-items: center; gap: .25rem; font-size: .78rem; padding: .05rem .5rem;
+  border: 1px solid var(--linie); border-radius: 999px; color: var(--leise); background: transparent;
+}
+.marke.vorlaeufig { color: var(--warn); border-color: var(--warn); }
+.marke.offen { color: var(--schlecht); border-color: var(--schlecht); }
+.wahlblock button { font-size: .85rem; padding: .15rem .55rem; }
+.wahlblock .pin { border-style: dashed; color: var(--leise); }
+.wahlblock .pin.an { border-style: solid; color: var(--text); font-weight: 600; }
+.notiz, .hinweis { font-size: .82rem; color: var(--leise); margin: .35rem 0 0; }
+.hinweis { color: var(--schlecht); }
+.leer { color: var(--leise); }
+
+.spalten { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 0 2rem; }
+.vorschlaege, .luecken { list-style: none; padding: 0; margin: 0; }
+.vorschlaege > li, .luecken > li {
+  display: flex; justify-content: space-between; gap: 1rem; align-items: flex-start;
+  padding: .6rem .75rem; background: var(--flaeche); border: 1px solid var(--linie); border-radius: 8px; margin-bottom: .5rem;
+}
+.vorschlaege ul { margin: .25rem 0 0; padding-left: 1.1rem; font-size: .88rem; }
+.vorschlaege .marke { margin-left: .5rem; }
+.luecken small { display: block; color: var(--leise); }
+.luecken button { flex-shrink: 0; font-size: .85rem; }
+.offen-liste { display: flex; flex-wrap: wrap; gap: .35rem; }
+.chip { font-size: .82rem; padding: .1rem .55rem; border-radius: 999px; background: var(--balken); }
+
+dialog {
+  width: min(640px, calc(100vw - 32px)); border: 1px solid var(--linie); border-radius: 10px;
+  background: var(--flaeche); color: var(--text); padding: 1.25rem;
+}
+dialog::backdrop { background: rgb(0 0 0 / .4); }
+dialog h2 { margin-top: 0; }
+dialog label { display: flex; flex-direction: column; gap: .2rem; font-size: .88rem; margin-bottom: .75rem; }
+dialog label.haken { flex-direction: row; align-items: center; gap: .4rem; margin-top: 1.4rem; }
+dialog small { color: var(--leise); }
+input:not([type='checkbox']), select, textarea {
+  font: inherit; color: inherit; background: var(--bg); border: 1px solid var(--linie); border-radius: 6px; padding: .35rem .5rem;
+}
+.raster { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0 1rem; }
+.vorschau { color: var(--leise); font-size: .88rem; margin: 0; min-height: 1.3em; }
+.fehler { color: var(--schlecht); font-size: .88rem; padding-left: 1.1rem; }
+.knoepfe { display: flex; justify-content: flex-end; gap: .5rem; margin-top: 1rem; }
