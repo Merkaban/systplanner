@@ -119,3 +119,21 @@ input:not([type='checkbox']), select, textarea {
 .vorschau { color: var(--leise); font-size: .88rem; margin: 0; min-height: 1.3em; }
 .fehler { color: var(--schlecht); font-size: .88rem; padding-left: 1.1rem; }
 .knoepfe { display: flex; justify-content: flex-end; gap: .5rem; margin-top: 1rem; }
+
+dialog.hilfe { width: min(760px, calc(100vw - 32px)); line-height: 1.55; }
+.hilfe h3 { font-size: 1rem; margin: 1.5rem 0 .4rem; }
+.hilfe ol, .hilfe ul { padding-left: 1.2rem; margin: .4rem 0; }
+.hilfe li { margin-bottom: .25rem; }
+.hilfe dl { margin: .4rem 0; display: grid; grid-template-columns: max-content 1fr; gap: .3rem 1rem; }
+.hilfe dl.begriffe { display: block; }
+.hilfe dl.begriffe > div { padding: .4rem 0; border-bottom: 1px solid var(--linie); }
+.hilfe dt { font-weight: 600; }
+.hilfe dd { margin: 0; }
+.hilfe code { background: var(--balken); padding: 0 .3rem; border-radius: 4px; white-space: nowrap; }
+.hilfe .leise { color: var(--leise); font-size: .88rem; }
+.hilfe-zu { float: right; }
+.farbe { display: inline-block; width: 1.5rem; height: .6rem; border-radius: 3px; vertical-align: middle; }
+.farbe.voll { background: var(--akzent); }
+.farbe.erfuellt { background: var(--gut); }
+.farbe.zuviel { background: repeating-linear-gradient(45deg, var(--schlecht) 0 4px, transparent 4px 7px); }
+@media (max-width: 480px) { .hilfe dl:not(.begriffe) { grid-template-columns: 1fr; } }

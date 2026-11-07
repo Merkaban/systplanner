@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { Hilfe } from './Hilfe';
 import { KATALOG } from './katalog';
 import {
   MODULE, MODULTITEL, ausKatalog, formatTage, formatWahlblock, mitRegel, parseTage, parseWahlblock, regelFehler, regelTage,
@@ -39,6 +40,7 @@ function laden(): Plan {
 export default function App() {
   const [plan, setPlan] = useState<Plan>(laden);
   const [bearbeiten, setBearbeiten] = useState<Fortbildung | 'neu' | null>(null);
+  const [hilfe, setHilfe] = useState(() => location.hash === '#hilfe');
   const importRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -102,6 +104,7 @@ export default function App() {
           <button className="primaer" onClick={() => setBearbeiten('neu')}>+ Fortbildung</button>
           <button onClick={exportieren}>Export</button>
           <button onClick={() => importRef.current?.click()}>Import</button>
+          <button onClick={() => setHilfe(true)}>Hilfe</button>
           <input ref={importRef} type="file" accept="application/json,.json" hidden
             onChange={(e) => { const d = e.target.files?.[0]; if (d) importieren(d); e.target.value = ''; }} />
         </div>
@@ -133,7 +136,7 @@ export default function App() {
       <section>
         <h2>Fortbildungen</h2>
         {fortbildungen.length === 0 ? (
-          <p className="leer">Noch keine Fortbildungen. Füge welche hinzu oder importiere deine Datei.</p>
+          <p className="leer">Noch keine Fortbildungen. Füge welche hinzu oder importiere deine Datei. Wie es geht, steht unter „Hilfe“.</p>
         ) : (
           <div className="tabelle-rahmen">
             <table>
@@ -213,6 +216,7 @@ export default function App() {
         </section>
       </div>
 
+      {hilfe && <Hilfe schliessen={() => setHilfe(false)} />}
       {bearbeiten && (
         <Formular
           f={bearbeiten === 'neu' ? null : bearbeiten}
