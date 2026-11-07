@@ -1,0 +1,5 @@
+node_modules
+dist
+# persönliche Initialbefüllung, nicht committen
+data/meine-seminare.json
+initial.md

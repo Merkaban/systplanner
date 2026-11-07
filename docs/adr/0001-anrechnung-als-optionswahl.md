@@ -1,0 +1,3 @@
+# Anrechnung als Auswahl aus Optionen statt Max-Flow über Obergrenzen
+
+`initial.md` sah je Fortbildung Obergrenzen pro Modul vor, verteilt per Max-Flow. Die Regeltexte des Instituts sind aber diskret („2 Tage Modul 7 oder 8“, „7 Tage M5 + 3 Tage M6 oder 8 + 2“): ein Wahlblock geht immer vollständig auf eine Option. Obergrenzen würden unerlaubte Aufteilungen wie „1 Tag M7 + 1 Tag M8“ zulassen. Deshalb besteht eine Anrechnungsregel aus festen Tagen plus Wahlblöcken mit Optionen, und Verteilungsvorschläge entstehen durch Durchprobieren aller Optionskombinationen. Das reicht, solange die Zahl der Kombinationen klein bleibt (heute: einstellig bis niedrig dreistellig).
